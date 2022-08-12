@@ -30,7 +30,7 @@ imageGallery.addEventListener('click', evt => {
         
         src="${evt.target.dataset.source}"
         
-        alt="${description}"
+        alt="${evt.target.dataset.alt}"
       /></div>
   `);
 
