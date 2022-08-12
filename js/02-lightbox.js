@@ -4,26 +4,20 @@ import { galleryItems } from './gallery-items.js';
 console.log(galleryItems);
 
 const galleryList = galleryItems.map(({ preview, original, description }) => {
-  return `<div class="gallery__item">
-  <a class="gallery__item" href="${original}">
+  return `<li><a class="gallery__item" href="${original}">
     <img
       class="gallery__image"
-      src="${preview}"
-      data-source="${original}"
+      src="${original}"
       alt="${description}"
     />
-  </a>
-</div>`;
+  </a></li>`;
 });
 
-// imageGallery.addEventListener('click', evt => {
-//   evt.preventDeafaults();
-//   const instance = basicLightbox.create(`
-//   	<div class = 'modal'><img
-//         class="modal__image"
-//         src="${evt.target.dataset.source}"
-//         data-source="${evt.target.dataset.source}"
-//         alt=""
-//       /></div>`);
-//   console.log(instance.show());
-// });
+const imageGallery = document.querySelector('.gallery');
+
+imageGallery.insertAdjacentHTML('beforeend', galleryList.join(''));
+
+var lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: '250',
+});
